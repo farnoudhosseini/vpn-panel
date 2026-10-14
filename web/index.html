@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#1a0e11" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>پنل پناه</title>
+    <style>
+      /* Painted before the bundle loads so there is no white flash. */
+      html { background: #1a0e11; }
+      html[data-theme="light"] { background: #f7f4f4; }
+    </style>
+    <script>
+      // Resolve the theme before first paint to avoid a flash of the wrong one.
+      (function () {
+        try {
+          var stored = localStorage.getItem("panah.theme");
+          var theme = stored || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+          document.documentElement.dataset.theme = theme;
+          var lang = localStorage.getItem("panah.lang") || "fa";
+          document.documentElement.lang = lang;
+          document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+        } catch (error) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
